@@ -22,7 +22,10 @@ bot.on('message', function(message){
 
   switch(args[0].toLowerCase()){
     case 'remindme':
-      reminder.setReminder(bot, args);
+      reminder.setReminder(args, message.createdAt, function(time){
+        
+        message.channel.send('Reminder in UTC set for: '+time);
+      });
       break;
     case 'introduce-bot':
         message.channel.send('Hi all, I am JoonBot (temporarily), I am currently being developed under the rule of Joon Lee. I am looking for developers to help me grow. This includes backend server, database, frontend, and simple HTML/CSS, so the only prerequisite is that you have seen code before. I dont care what your skills are as long as you are down to learn. Reply if you want to contribute :) hehexd');

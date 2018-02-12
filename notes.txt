@@ -1,0 +1,6 @@
+!remindme 1hour
+!remindme 40mins
+!remindme today 5:30PM
+!remindme tomorrow 4:20AM
+!remindme 3/20/18 2:30PM
+!remindme 3/21 14:13
