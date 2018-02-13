@@ -101,7 +101,7 @@ const processDate = function(dayInfo, now){
   return time;
 }
 
-const processTime = function(time, timeInfoArr, now){
+const processTime = function(time, timeInfoArr, now){//time off by UTC
   var hour = parseInt(timeInfoArr[0]);
   var min;
 

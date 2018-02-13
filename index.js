@@ -23,7 +23,6 @@ bot.on('message', function(message){
   switch(args[0].toLowerCase()){
     case 'remindme':
       reminder.setReminder(args, message.createdAt, function(time){
-        
         message.channel.send('Reminder in UTC set for: '+time);
       });
       break;
