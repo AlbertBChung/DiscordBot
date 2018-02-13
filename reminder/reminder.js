@@ -1,30 +1,38 @@
+const TIMEZONESHIFT = 5;
 
 exports.setReminder = function setReminder(args, now, callback){
   try{
     now = new Date(now);
-    console.log(now);
     var time = processWhen(args.slice(1,3), now);
+
   } catch (err){
     console.log(err);
   }
-
   callback(time);
 }
 
-
+/**
+* input timArr = [2/1/1998 , 10:32PM]
+*/
 const processWhen = function(timeArr, now){
+  console.log(now, "now")
   var time = processSoonTime(timeArr[0], now); //already returns UTC
-
   if(time == null){
+    now.setHours(now.getHours()-TIMEZONESHIFT);//timezone shift
     var dayInfo = timeArr[0].split('/');
     time = processDate(dayInfo, now);
     var timeInfo = timeArr[1].split(':');
     time = processTime(time, timeInfo, now);
+    time.setHours(now.getHours()+TIMEZONESHIFT);//shift back to UTC
   }
 
+  console.log(time, "time")
   return time;
 }
 
+/**
+* input prompt = 1hour
+*/
 const processSoonTime = function(prompt, now){
 
   if(prompt.substring(prompt.length-4) === "hour" || prompt.substring(prompt.length-5) === "hours"){
@@ -33,6 +41,7 @@ const processSoonTime = function(prompt, now){
     if(number < 1){
       throw 'GT0';
     }
+
     now.setHours(now.getHours()+number);
 
   } else if(prompt.substring(prompt.length-3) === "min" || prompt.substring(prompt.length-4) === "mins") {
@@ -69,6 +78,10 @@ const processSoonTime = function(prompt, now){
   return now;
 }
 
+/**
+* input prompt = ['tomorrow']
+* input prompt = ['2', '11', '1998']
+*/
 const processDate = function(dayInfo, now){
   var time;
 
@@ -103,7 +116,10 @@ const processDate = function(dayInfo, now){
   return time;
 }
 
-const processTime = function(time, timeInfoArr, now){//time off by UTC
+/**
+* input prompt = ['10', '30PM']
+*/
+const processTime = function(time, timeInfoArr, now){
   var hour = parseInt(timeInfoArr[0]);
   var min;
 
