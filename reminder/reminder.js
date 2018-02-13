@@ -24,7 +24,7 @@ const processWhen = function(timeArr, now){
     var timeInfo = timeArr[1].split(':');
     time = processTime(time, timeInfo, now);
     console.log(time,'minutes2', TIMEZONESHIFT);
-    time.setHours(now.getHours()+TIMEZONESHIFT);//shift back to UTC
+    time.setHours(time.getHours()+TIMEZONESHIFT);//shift back to UTC
   }
 
   console.log(time, "time")
