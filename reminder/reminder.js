@@ -137,6 +137,6 @@ const processTime = function(time, timeInfoArr, now){
 
   time.setHours(hour);
   time.setMinutes(min);
-
+  console.log(time, 'minutes')
   return time;
 }
