@@ -2,6 +2,7 @@
 exports.setReminder = function setReminder(args, now, callback){
   try{
     now = new Date(now);
+    console.log(now);
     var time = processWhen(args.slice(1,3), now);
   } catch (err){
     console.log(err);
@@ -75,6 +76,7 @@ const processDate = function(dayInfo, now){
     time = now;
   } else if( dayInfo[0] == 'tomorrow'){
     time = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1);
+    console.log(time, "time");
   } else {
     var month = parseInt(dayInfo[0]);
     var day = parseInt(dayInfo[1]);
