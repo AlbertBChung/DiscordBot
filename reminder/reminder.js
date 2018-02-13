@@ -2,7 +2,8 @@ const TIMEZONESHIFT = 5;
 
 exports.setReminder = function setReminder(args, now, callback){
   try{
-    now = new Date(now);
+    //now = new Date(now);
+    now = new Date(2020, 2, 12, 22+5, 00)
     var time = processWhen(args.slice(1,3), now);
 
   } catch (err){
