@@ -23,6 +23,7 @@ const processWhen = function(timeArr, now){
     time = processDate(dayInfo, now);
     var timeInfo = timeArr[1].split(':');
     time = processTime(time, timeInfo, now);
+    console.log(time,'minutes2');
     time.setHours(now.getHours()+TIMEZONESHIFT);//shift back to UTC
   }
 
