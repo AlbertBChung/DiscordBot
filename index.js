@@ -1,9 +1,13 @@
 const Discord = require('discord.js');
 require('dotenv').load();
 const TOKEN = process.env.TOKEN;
-const PREFIX = "!"
+var mongoose = require('mongoose');
+mongoose.connect(process.env.MONGODBURI);
+
+const PREFIX = "\`"
 
 const reminder = require('./reminder/reminder');
+const Util = require('./util/util');
 
 
 
@@ -12,6 +16,8 @@ var bot = new Discord.Client();
 
 bot.on('ready', function(message){
   console.log('ready');
+
+  reminder.checkReminders(bot);
 });
 
 bot.on('message', function(message){
@@ -22,13 +28,19 @@ bot.on('message', function(message){
 
   switch(args[0].toLowerCase()){
     case 'remindme':
-      reminder.setReminder(args, message.createdAt, function(time){
-          console.log(message.channel.guild.region);
-          message.channel.send('Reminder in UTC set for: '+time);
-      });
+      try{
+        reminder.setReminder(args, message, function(time){
+            message.channel.send('Message noted. Reminder at '+time);
+        });
+      } catch (err){
+        console.log("reminder-error");
+        Util.throwError(message.channel);
+      }
+
       break;
     case 'introduce-bot':
-        message.channel.send('Hi all, I am JoonBot (temporarily), I am currently being developed under the rule of Joon Lee. I am looking for developers to help me grow. This includes backend server, database, frontend, and simple HTML/CSS, so the only prerequisite is that you have seen code before. I dont care what your skills are as long as you are down to learn. Reply if you want to contribute :) hehexd');
+        message.channel.send('Hi I\'m AIBot');
+        break;
     default:
   }
 });

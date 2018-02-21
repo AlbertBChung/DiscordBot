@@ -4,3 +4,12 @@
 !remindme tomorrow 4:20AM
 !remindme 3/20/18 2:30PM
 !remindme 3/21 14:13
+
+
+
+
+
+if no ping -> DM
+if yes ping
+
+'<@!275727343979331584>', is a ping as welll
