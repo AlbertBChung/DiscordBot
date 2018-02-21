@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 require('dotenv').load();
 const TOKEN = process.env.TOKEN;
 var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODBURI);
+mongoose.connect(process.env.MONGODB_URI);
 
 const PREFIX = "\`"
 
