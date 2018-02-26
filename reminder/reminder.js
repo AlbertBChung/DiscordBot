@@ -14,7 +14,7 @@ exports.setReminder = function setReminder(args, message, callback){
   time = time[0];
 
   var target = [];
-  var tagTest = /<.+>/
+  var tagTest = /<[^:].+>/
   while(tagTest.test(args[1+wordCount])){
     target.push(args[1+wordCount]);
     wordCount++;

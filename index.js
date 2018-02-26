@@ -40,6 +40,7 @@ bot.on('message', function(message){
       break;
     case 'introduce-bot':
         message.channel.send('Hi I\'m AIBot');
+        console.log(bot.users.get('229979748959387648'));
         break;
     default:
   }
