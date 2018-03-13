@@ -7,8 +7,8 @@ mongoose.connect(process.env.MONGODB_URI);
 const PREFIX = "\`"
 
 const reminder = require('./reminder/reminder');
+const musicPlayer = require('./music/musicPlayer');
 const Util = require('./util/util');
-
 
 
 
@@ -22,6 +22,11 @@ bot.on('ready', function(message){
 
 bot.on('message', function(message){
   if(message.author.equals(bot.user)) return;
+
+  if(!isNaN(parseInt(message.content))){
+    Util.handleOptionSelect(message);
+  }
+
   if(!message.content.startsWith(PREFIX)) return;
 
   var args = message.content.substring(PREFIX.length).split(' ');
@@ -38,6 +43,9 @@ bot.on('message', function(message){
       }
 
       break;
+    case 'music':
+        musicPlayer.music(args, message);
+        break;
     case 'introduce-bot':
         message.channel.send('Hi I\'m AIBot');
         console.log(bot.users.get('229979748959387648'));
