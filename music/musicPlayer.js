@@ -189,14 +189,15 @@ exports.handleSelect = function(message, music){
 
 
 var play = function(connection, musicPlayer, channel){
+  const streamOptions = { volume: .03 };
   console.log(musicPlayer.queue[0])
-  dispatcher[musicPlayer.serverId] = connection.playStream(YTDL(musicPlayer.queue[0], {filter: 'audioonly'}));
+  dispatcher[musicPlayer.serverId] = connection.playStream(YTDL(musicPlayer.queue[0], {filter: 'audioonly'}), streamOptions);
   musicPlayer.queue.shift();
   musicPlayer.save(function(err) {
     if (err) throw err;
   });
   dispatcher[musicPlayer.serverId].on('end', function(){
-    var rand = Math.floor((Math.random() * 10) + 1);
+    var rand = Math.floor((Math.random() * 20) + 1);
     if(rand == 1){
       musicPlayer.queue.unshift('https://www.youtube.com/watch?v=2cjbSgy3vSw');
       var embed = new Discord.RichEmbed()
