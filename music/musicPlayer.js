@@ -65,7 +65,7 @@ exports.music = function music(args, message){
         if(musicPlayer.queue[0]){
           if(!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection){
             play(connection, musicPlayer, message.channel);
-          }).catch(console.log('play'))
+          }).catch(function(err){err})
         } else {
           message.channel.send('Queue is empty! Add a song');
         }
