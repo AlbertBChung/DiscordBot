@@ -13,11 +13,12 @@ var dispatcher = [];
 
 
 
-/**
+
 Music.remove({ }, function (err) {
   if (err) return handleError(err);
   console.log('d all')
 });
+/**
   STEPS:
   1. fetch youtube videos
   2. send embeds to channels
