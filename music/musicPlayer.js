@@ -55,7 +55,7 @@ var getPlayer = function(serverId, callback){
 }
 
 exports.music = function music(args, message){
-
+  try{
   getPlayer(message.guild.id, function(musicPlayer){
     switch(args[1]){
       case 'play':
@@ -96,6 +96,9 @@ exports.music = function music(args, message){
 
 
   });
+}catch(err){
+  console.log(err)
+}
 }
 
 
