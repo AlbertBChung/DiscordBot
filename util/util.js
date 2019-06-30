@@ -21,3 +21,10 @@ exports.handleOptionSelect = function(message){
       }
     });
 }
+
+
+exports.idListToPingList = function(id_list){
+  id_list = id_list.map(ele => '<@' + ele + '>')
+  var append = (list, ele) => {return list + ', ' + ele}
+  return id_list.reduce(append)
+}
